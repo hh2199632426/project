@@ -1,0 +1,36 @@
+services:
+  backend:
+    build:
+      context: ./backend-java
+    container_name: racingquiz-backend
+    restart: always
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT:-3306}
+      DB_NAME: ${DB_NAME}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-admin}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-666666}
+    ports:
+      - "${BACKEND_PORT:-3000}:3000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - racingquiz-network
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: racingquiz-frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "${FRONTEND_PORT:-5432}:80"
+    networks:
+      - racingquiz-network
+
+networks:
+  racingquiz-network:
+    driver: bridge
