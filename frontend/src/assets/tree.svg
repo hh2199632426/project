@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+  <!-- Trunk -->
+  <rect x="20" y="35" width="10" height="15" fill="#5D4037" />
+  <!-- Leaves (Dark Green for contrast) -->
+  <path d="M25,5 L5,35 L45,35 Z" fill="#1B5E20" />
+  <!-- Inner Detail (Lighter Green) -->
+  <path d="M25,10 L10,30 L40,30 Z" fill="#2E7D32" />
+</svg>
